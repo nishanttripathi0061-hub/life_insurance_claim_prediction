@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Life Insurance Claim Prediction</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="card">
+    <h2>Life Insurance Claim Prediction</h2>
+
+    <h3>Customer Details</h3>
+    <input type="number" id="age" placeholder="Age" required>
+    <input type="number" id="bmi" placeholder="BMI" required>
+    <input type="number" id="children" placeholder="Children" required>
+
+    <select id="sex">
+        <option value="1">Female</option>
+        <option value="0">Male</option>
+    </select>
+
+    <select id="smoker">
+        <option value="0">Non-Smoker</option>
+        <option value="1">Smoker</option>
+    </select>
+
+    <select id="region">
+        <option value="0">Region 0</option>
+        <option value="1">Region 1</option>
+        <option value="2">Region 2</option>
+        <option value="3">Region 3</option>
+    </select>
+
+    <h3>Transaction Details</h3>
+
+    <input type="number" id="amount" placeholder="Transaction Amount" required>
+
+    <select id="type">
+        <option value="3">Payment</option>
+        <option value="1">Cash Out</option>
+        <option value="4">Transfer</option>
+    </select>
+
+    <button onclick="predict()">Predict</button>
+
+    <div id="result"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
