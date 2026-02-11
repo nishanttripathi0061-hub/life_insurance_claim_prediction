@@ -1,4 +1,15 @@
+function getRiskBadge(risk) {
+    if (risk == 0) return '<span class="badge low">Low Risk 🟢</span>';
+    if (risk == 1) return '<span class="badge medium">Medium Risk 🟡</span>';
+    return '<span class="badge high">High Risk 🔴</span>';
+}
+
 function predict() {
+
+    const resultDiv = document.getElementById("result");
+
+    // Show loading
+    resultDiv.innerHTML = '<div class="loading">Predicting...</div>';
 
     const amount = Number(document.getElementById("amount").value);
 
@@ -32,22 +43,28 @@ function predict() {
     };
 
     fetch("https://life-insurance-claim-prediction.onrender.com/predict", {
-
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
     })
     .then(res => res.json())
     .then(result => {
-        document.getElementById("result").innerHTML = `
-            <b>Fraud:</b> ${result.fraud || "N/A"}<br>
-            <b>Risk:</b> ${result.risk || result.risk_cluster}<br>
-            <b>Premium:</b> ₹${result.predicted_premium || result.premium}<br>
-            <b>Claim:</b> ${result.claim_status || result.claim}
+
+        const risk = result.risk || result.risk_cluster;
+        const claim = result.claim_status || result.claim;
+
+        resultDiv.innerHTML = `
+            <p><b>Fraud:</b> ${result.fraud || "N/A"}</p>
+            <p><b>Risk:</b> ${getRiskBadge(risk)}</p>
+            <p><b>Premium:</b> ₹${result.predicted_premium || result.premium}</p>
+            <p><b>Claim:</b> 
+                <span class="${claim.includes("Approved") ? "approved" : "rejected"}">
+                    ${claim}
+                </span>
+            </p>
         `;
     })
     .catch(() => {
-        document.getElementById("result").innerText =
-            "Error connecting to backend";
+        resultDiv.innerHTML = "Server Error ⚠️";
     });
 }

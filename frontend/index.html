@@ -1,49 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Life Insurance Claim Prediction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="card">
-    <h2>Life Insurance Claim Prediction</h2>
+<div class="container">
+    <div class="card">
 
-    <h3>Customer Details</h3>
-    <input type="number" id="age" placeholder="Age" required>
-    <input type="number" id="bmi" placeholder="BMI" required>
-    <input type="number" id="children" placeholder="Children" required>
+        <h2>Life Insurance Claim Prediction</h2>
 
-    <select id="sex">
-        <option value="1">Female</option>
-        <option value="0">Male</option>
-    </select>
+        <!-- Customer Section -->
+        <div class="section">
+            <h3>Customer Details</h3>
+            <div class="form-grid">
+                <input type="number" id="age" placeholder="Age" required>
+                <input type="number" id="bmi" placeholder="BMI" required>
+                <input type="number" id="children" placeholder="Children" required>
 
-    <select id="smoker">
-        <option value="0">Non-Smoker</option>
-        <option value="1">Smoker</option>
-    </select>
+                <select id="sex">
+                    <option value="1">Female</option>
+                    <option value="0">Male</option>
+                </select>
 
-    <select id="region">
-        <option value="0">Region 0</option>
-        <option value="1">Region 1</option>
-        <option value="2">Region 2</option>
-        <option value="3">Region 3</option>
-    </select>
+                <select id="smoker">
+                    <option value="0">Non-Smoker</option>
+                    <option value="1">Smoker</option>
+                </select>
 
-    <h3>Transaction Details</h3>
+                <select id="region">
+                    <option value="0">Region 0</option>
+                    <option value="1">Region 1</option>
+                    <option value="2">Region 2</option>
+                    <option value="3">Region 3</option>
+                </select>
+            </div>
+        </div>
 
-    <input type="number" id="amount" placeholder="Transaction Amount" required>
+        <!-- Transaction Section -->
+        <div class="section">
+            <h3>Transaction Details</h3>
+            <div class="form-grid">
+                <input type="number" id="amount" placeholder="Transaction Amount" required>
 
-    <select id="type">
-        <option value="3">Payment</option>
-        <option value="1">Cash Out</option>
-        <option value="4">Transfer</option>
-    </select>
+                <select id="type">
+                    <option value="3">Payment</option>
+                    <option value="1">Cash Out</option>
+                    <option value="4">Transfer</option>
+                </select>
+            </div>
+        </div>
 
-    <button onclick="predict()">Predict</button>
+        <button onclick="predict()">Predict</button>
 
-    <div id="result"></div>
+        <div id="result"></div>
+
+    </div>
 </div>
 
 <script src="script.js"></script>
