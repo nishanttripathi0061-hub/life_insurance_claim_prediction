@@ -4,62 +4,79 @@
     <meta charset="UTF-8">
     <title>Life Insurance Claim Prediction</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<div class="container">
-    <div class="card">
-
-        <h2>Life Insurance Claim Prediction</h2>
-
-        <!-- Customer Section -->
-        <div class="section">
-            <h3>Customer Details</h3>
-            <div class="form-grid">
-                <input type="number" id="age" placeholder="Age" required>
-                <input type="number" id="bmi" placeholder="BMI" required>
-                <input type="number" id="children" placeholder="Children" required>
-
-                <select id="sex">
-                    <option value="1">Female</option>
-                    <option value="0">Male</option>
-                </select>
-
-                <select id="smoker">
-                    <option value="0">Non-Smoker</option>
-                    <option value="1">Smoker</option>
-                </select>
-
-                <select id="region">
-                    <option value="0">Region 0</option>
-                    <option value="1">Region 1</option>
-                    <option value="2">Region 2</option>
-                    <option value="3">Region 3</option>
-                </select>
-            </div>
-        </div>
-
-        <!-- Transaction Section -->
-        <div class="section">
-            <h3>Transaction Details</h3>
-            <div class="form-grid">
-                <input type="number" id="amount" placeholder="Transaction Amount" required>
-
-                <select id="type">
-                    <option value="3">Payment</option>
-                    <option value="1">Cash Out</option>
-                    <option value="4">Transfer</option>
-                </select>
-            </div>
-        </div>
-
-        <button onclick="predict()">Predict</button>
-
-        <div id="result"></div>
-
+    <div class="bg-layer" aria-hidden="true">
+        <span class="orb orb-one"></span>
+        <span class="orb orb-two"></span>
+        <span class="orb orb-three"></span>
     </div>
-</div>
+
+    <header class="brand-bar reveal" style="--delay: 0.04s;">
+        <div class="brand-pill">
+            <img src="./invertis-removebg-preview.png" alt="Invertis University logo">
+        </div>
+        <div class="brand-pill">
+            <img src="./WhatsApp_Image_2026-03-14_at_9.31.20_AM-removebg-preview.png" alt="Ducat logo">
+        </div>
+    </header>
+
+    <main class="container reveal" style="--delay: 0.12s;">
+        <section class="card">
+            <p class="eyebrow">Smart Risk Evaluation</p>
+            <h1>Life Insurance Claim Prediction</h1>
+            <p class="subcopy">
+                Fill in the customer profile and transaction details, and the model will estimate risk level, premium amount, and claim decision.
+            </p>
+
+            <div class="panel-grid">
+                <section class="section reveal" style="--delay: 0.18s;">
+                    <h2>Customer Details</h2>
+                    <div class="form-grid">
+                        <input type="number" id="age" placeholder="Age" required>
+                        <input type="number" id="bmi" placeholder="BMI" required>
+                        <input type="number" id="children" placeholder="Children" required>
+
+                        <select id="sex">
+                            <option value="1">Female</option>
+                            <option value="0">Male</option>
+                        </select>
+
+                        <select id="smoker">
+                            <option value="0">Non-Smoker</option>
+                            <option value="1">Smoker</option>
+                        </select>
+
+                        <select id="region">
+                            <option value="0">Region 0</option>
+                            <option value="1">Region 1</option>
+                            <option value="2">Region 2</option>
+                            <option value="3">Region 3</option>
+                        </select>
+                    </div>
+                </section>
+
+                <section class="section reveal" style="--delay: 0.26s;">
+                    <h2>Transaction Details</h2>
+                    <div class="form-grid form-grid-compact">
+                        <input type="number" id="amount" placeholder="Transaction Amount" required>
+
+                        <select id="type">
+                            <option value="3">Payment</option>
+                            <option value="1">Cash Out</option>
+                            <option value="4">Transfer</option>
+                        </select>
+                    </div>
+                </section>
+            </div>
+            <button class="predict-btn reveal" style="--delay: 0.34s;" onclick="predict()">Predict Claim</button>
+            <div id="result" class="result-panel" aria-live="polite"></div>
+        </section>
+    </main>
 
 <script src="script.js"></script>
 </body>
