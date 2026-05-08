@@ -1,3 +1,50 @@
+const THEME_STORAGE_KEY = "licp-theme";
+
+function applyTheme(theme) {
+    const activeTheme = theme === "dark" ? "dark" : "light";
+    document.body.setAttribute("data-theme", activeTheme);
+
+    const toggleButton = document.getElementById("themeToggle");
+    if (!toggleButton) return;
+
+    const isDark = activeTheme === "dark";
+    toggleButton.textContent = isDark ? "Light mode" : "Dark mode";
+    toggleButton.setAttribute("aria-pressed", String(isDark));
+    toggleButton.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+}
+
+function getInitialTheme() {
+    try {
+        const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+        if (savedTheme === "dark" || savedTheme === "light") {
+            return savedTheme;
+        }
+    } catch (error) {
+        console.warn("Unable to read saved theme:", error);
+    }
+
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
+function initThemeToggle() {
+    const toggleButton = document.getElementById("themeToggle");
+    if (!toggleButton) return;
+
+    applyTheme(getInitialTheme());
+
+    toggleButton.addEventListener("click", () => {
+        const currentTheme = document.body.getAttribute("data-theme") === "dark" ? "dark" : "light";
+        const nextTheme = currentTheme === "dark" ? "light" : "dark";
+        applyTheme(nextTheme);
+
+        try {
+            localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+        } catch (error) {
+            console.warn("Unable to save theme:", error);
+        }
+    });
+}
+
 function getRiskBadge(risk) {
     if (risk === 0) return '<span class="badge low">Low Risk</span>';
     if (risk === 1) return '<span class="badge medium">Medium Risk</span>';
@@ -109,3 +156,5 @@ async function predict() {
         showResult(`Unable to predict: ${error.message}`, true);
     }
 }
+
+document.addEventListener("DOMContentLoaded", initThemeToggle);
